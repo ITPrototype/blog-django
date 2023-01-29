@@ -1,0 +1,69 @@
+{% load static %}
+{% block extrahead %}
+<script>
+  window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';
+  { { block.super } }
+</script>
+{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <title>{% block title %}Oq psi{% endblock %}</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary p-2" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'home' %}">Oq psi</a>
+          <div class="before-nav">
+            <ul class="navbar-nav">
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a href="{% url 'article_list' %}" class="nav-link">Новости</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  {{user.username}}
+                </a>
+                <ul class="dropdown-menu" style="position: absolute; margin-left: -70px;">
+                  {% if user.is_superuser %}
+                  <li><a class="dropdown-item" href="{% url 'article_new' %}">Новый пост</a></li>
+                  {% endif %}
+                  <li><a class="dropdown-item" href="{% url 'password_change' %}">Изменить пароль</a></li>
+                  <li><a class="dropdown-item" href="{% url 'logout' %}">Выйти</a></li>
+                </ul>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url 'signup' %}">Регистратция</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Войти</a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="container">
+      {% block content %}
+      {% endblock %}
+    </main>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Bosh sahifa{% endblock %}
+
+{% block content %}
+<br>
+<div class="jumbotron">
+  <h1 class="display-4">Здраствуйте</h1>
+  <p class="lead">Добро пожаловать в блог "Oq psi"</p>
+  <hr class="my-4">
+  <p>Здесь вы можете читать блог о программистах</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="{% url 'article_list' %}">Смотреть посты</a>
+  </p>
+</div>
+{% endblock %}
+
+<!-- https://www.youtube.com/watch?v=gYbNBC9qCfw&list=PLwsopmzfbOn_1XLqRYV7gu8ozcYvPEqmd&index=24 13:14 -->

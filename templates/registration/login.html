@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Войти{% endblock %}
+
+{% block content %}
+<div class="formlog" style="width: 500px;margin: 0 auto;">
+  <h2>Войти</h2>
+  <form action="" method="post">
+    {% csrf_token %}
+    {{form | crispy}}
+    <a href="{% url 'password_reset' %}" class="btn-link">Забыли пароль?</a><br>
+    <button type="submit" class="btn btn-outline-primary" style="margin-top: 10px;">Войти</button>
+  </form>
+</div>
+{% endblock %}
